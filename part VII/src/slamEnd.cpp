@@ -65,8 +65,11 @@ int main( int argc, char** argv )
     // 初始化求解器
     SlamLinearSolver* linearSolver = new SlamLinearSolver();
     linearSolver->setBlockOrdering( false );
-    SlamBlockSolver* blockSolver = new SlamBlockSolver( linearSolver );
-    g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg( blockSolver );
+    // SlamBlockSolver* blockSolver = new SlamBlockSolver( linearSolver );
+    // g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg( blockSolver );
+     // 新版本g2o
+    SlamBlockSolver* blockSolver = new SlamBlockSolver( std::unique_ptr<SlamLinearSolver>(linearSolver) );
+    g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg( std::unique_ptr<SlamBlockSolver>(blockSolver) );
 
     g2o::SparseOptimizer globalOptimizer;  // 最后用的就是这个东东
     globalOptimizer.setAlgorithm( solver ); 

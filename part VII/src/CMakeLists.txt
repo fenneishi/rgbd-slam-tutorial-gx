@@ -7,6 +7,7 @@ list(REMOVE_ITEM PCL_LIBRARIES "vtkproj4") # use this in Ubuntu 16.04
 
 # 增加opencv的依赖
 FIND_PACKAGE( OpenCV REQUIRED )
+# FIND_PACKAGE( OpenCV 2.4 REQUIRED )
 
 # 添加头文件和库文件
 ADD_DEFINITIONS( ${PCL_DEFINITIONS} )

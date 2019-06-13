@@ -60,8 +60,12 @@ void computeKeyPointsAndDesp( FRAME& frame, string detector, string descriptor )
     cv::Ptr<cv::FeatureDetector> _detector;
     cv::Ptr<cv::DescriptorExtractor> _descriptor;
 
-    _detector = cv::FeatureDetector::create( detector.c_str() );
-    _descriptor = cv::DescriptorExtractor::create( descriptor.c_str() );
+    // _detector = cv::FeatureDetector::create( detector.c_str() );
+    // _descriptor = cv::DescriptorExtractor::create( descriptor.c_str() );
+
+    _detector = cv::ORB::create();
+    _descriptor = cv::ORB::create();
+
 
     if (!_detector || !_descriptor)
     {

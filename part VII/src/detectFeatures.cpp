@@ -34,8 +34,12 @@ int main( int argc, char** argv )
     // _detector = cv::FeatureDetector::create( "SIFT" );
     // _descriptor = cv::DescriptorExtractor::create( "SIFT" );
     
-    detector = cv::FeatureDetector::create("ORB");
-    descriptor = cv::DescriptorExtractor::create("ORB");
+    // //opencv2
+    // detector = cv::FeatureDetector::create("ORB");
+    // descriptor = cv::DescriptorExtractor::create("ORB");
+    // opencv3
+    detector = cv::ORB::create();
+    descriptor = cv::ORB::create();
 
     vector< cv::KeyPoint > kp1, kp2; //关键点
     detector->detect( rgb1, kp1 );  //提取关键点
